@@ -1,0 +1,16 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "extends": ["airbnb-base", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "plugins": ["import"],
+  "rules": {
+    "no-console": "off",
+    "quotes": ["error", "double"],
+    "import/extensions": ["error", "always"]
+  }
+}
