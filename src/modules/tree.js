@@ -147,4 +147,9 @@ export default class Tree {
     result.push(root.data);
     return result;
   }
+
+  height(root = this.root) {
+    if (!root) return -1;
+    return Math.max(this.height(root.left), this.height(root.right)) + 1;
+  }
 }
