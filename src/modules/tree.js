@@ -4,7 +4,6 @@ export default class Tree {
   constructor(array) {
     const duplicateRemovedArray = Tree.#removeDuplicates(array);
     const sortedArray = Tree.#sort(duplicateRemovedArray);
-    console.log(sortedArray);
     this.root = this.#buildTree(sortedArray);
   }
 
@@ -40,6 +39,22 @@ export default class Tree {
     const root = new Node(sortedArray[mid]);
     root.left = this.#buildTree(sortedArray.slice(0, mid));
     root.right = this.#buildTree(sortedArray.slice(mid + 1));
+    return root;
+  }
+
+  insert(key) {
+    if (this.root === null) {
+      this.root = new Node(key);
+    } else {
+      this.#insertRecursive(key, this.root);
+    }
+  }
+
+  #insertRecursive(key, root) {
+    if (root === null) return new Node(key);
+    if (key < root.data) root.left = this.#insertRecursive(key, root.left);
+    else if (key > root.data) root.right = this.#insertRecursive(key, root.right);
+
     return root;
   }
 }
