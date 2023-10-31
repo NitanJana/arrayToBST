@@ -120,4 +120,13 @@ export default class Tree {
     }
     return result;
   }
+
+  inOrder(callback, result = [], root = this.root) {
+    if (!root) return result;
+    if (root.left) this.inOrder(callback,result, root.left);
+    if (callback) callback(root);
+    result.push(root.data);
+    if (root.right) this.inOrder(callback,result, root.right);
+    return result;
+  }
 }
