@@ -123,10 +123,19 @@ export default class Tree {
 
   inOrder(callback, result = [], root = this.root) {
     if (!root) return result;
-    if (root.left) this.inOrder(callback,result, root.left);
+    if (root.left) this.inOrder(callback, result, root.left);
     if (callback) callback(root);
     result.push(root.data);
-    if (root.right) this.inOrder(callback,result, root.right);
+    if (root.right) this.inOrder(callback, result, root.right);
+    return result;
+  }
+
+  preOrder(callback, result = [], root = this.root) {
+    if (!root) return result;
+    if (callback) callback(root);
+    result.push(root.data);
+    if (root.left) this.preOrder(callback, result, root.left);
+    if (root.right) this.preOrder(callback, result, root.right);
     return result;
   }
 }
