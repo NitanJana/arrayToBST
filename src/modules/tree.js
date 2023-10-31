@@ -138,4 +138,13 @@ export default class Tree {
     if (root.right) this.preOrder(callback, result, root.right);
     return result;
   }
+
+  postOrder(callback, result = [], root = this.root) {
+    if (!root) return result;
+    if (root.left) this.postOrder(callback, result, root.left);
+    if (root.right) this.postOrder(callback, result, root.right);
+    if (callback) callback(root);
+    result.push(root.data);
+    return result;
+  }
 }
