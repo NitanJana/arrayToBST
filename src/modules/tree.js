@@ -158,6 +158,11 @@ export default class Tree {
     if (key === root.data) return depth;
     if (key < root.data) return this.depth(key, root.left, depth + 1);
     if (key > root.data) return this.depth(key, root.right, depth + 1);
-    return -1
+    return -1;
+  }
+
+  isBalanced(root = this.root) {
+    if (!root) return true;
+    return Math.abs(this.height(root.left) - this.height(root.right)) < 2;
   }
 }
