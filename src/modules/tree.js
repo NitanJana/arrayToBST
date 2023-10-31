@@ -107,4 +107,17 @@ export default class Tree {
     }
     return node;
   }
+
+  levelOrder(callback, result = [], queue = []) {
+    if (!this.root) return result;
+    queue.push(this.root);
+    while (queue.length) {
+      const current = queue.shift();
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+      result.push(current.data);
+      if (callback) callback(current);
+    }
+    return result;
+  }
 }
