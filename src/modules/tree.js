@@ -53,8 +53,47 @@ export default class Tree {
   #insertRecursive(key, root) {
     if (root === null) return new Node(key);
     if (key < root.data) root.left = this.#insertRecursive(key, root.left);
-    else if (key > root.data) root.right = this.#insertRecursive(key, root.right);
+    else if (key > root.data)
+      root.right = this.#insertRecursive(key, root.right);
 
+    return root;
+  }
+
+  delete(key) {
+    this.#deleteRecursive(key, this.root);
+  }
+
+  #deleteRecursive(key, root) {
+    if (root === null) return root;
+    if (key < root.data) {
+      root.left = this.#deleteRecursive(key, root.left);
+      return root;
+    }
+    if (key > root.data) {
+      root.right = this.#deleteRecursive(key, root.right);
+      return root;
+    }
+
+    if (root.left === null) {
+      return root.right;
+    }
+    if (root.right === null) {
+      return root.left;
+    }
+
+    let succParent = root;
+    let succ = root.right;
+
+    while (succ.left !== null) {
+      succParent = succ;
+      succ = succ.left;
+    }
+    if (succParent !== root) {
+      succParent.left = succ.right;
+    } else {
+      succParent.right = succ.right;
+    }
+    root.data = succ.data;
     return root;
   }
 }
