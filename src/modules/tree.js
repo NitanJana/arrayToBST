@@ -152,4 +152,12 @@ export default class Tree {
     if (!root) return -1;
     return Math.max(this.height(root.left), this.height(root.right)) + 1;
   }
+
+  depth(key, root = this.root, depth = 0) {
+    if (!root || !key) return -1;
+    if (key === root.data) return depth;
+    if (key < root.data) return this.depth(key, root.left, depth + 1);
+    if (key > root.data) return this.depth(key, root.right, depth + 1);
+    return -1
+  }
 }
