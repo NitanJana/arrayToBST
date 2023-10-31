@@ -60,7 +60,7 @@ export default class Tree {
   }
 
   delete(key) {
-    this.#deleteRecursive(key, this.root);
+    this.root=this.#deleteRecursive(key, this.root);
   }
 
   #deleteRecursive(key, root) {
