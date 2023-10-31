@@ -60,7 +60,7 @@ export default class Tree {
   }
 
   delete(key) {
-    this.root=this.#deleteRecursive(key, this.root);
+    this.root = this.#deleteRecursive(key, this.root);
   }
 
   #deleteRecursive(key, root) {
@@ -95,5 +95,16 @@ export default class Tree {
     }
     root.data = succ.data;
     return root;
+  }
+
+  find(key, root = this.root) {
+    const node = root;
+    if (node === null) return null;
+    if (node.data !== key) {
+      return node.key < key
+        ? this.find(key, node.right)
+        : this.find(key, node.left);
+    }
+    return node;
   }
 }
