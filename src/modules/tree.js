@@ -165,4 +165,10 @@ export default class Tree {
     if (!root) return true;
     return Math.abs(this.height(root.left) - this.height(root.right)) < 2;
   }
+
+  rebalance(root=this.root) {
+    if (!root) return;
+    const sortedArray = Tree.#sort(this.inOrder());
+    this.root = this.#buildTree(sortedArray);
+  }
 }
